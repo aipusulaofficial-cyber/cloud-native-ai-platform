@@ -4,7 +4,7 @@ from fastapi import FastAPI, HTTPException
 from opentelemetry import trace
 from pydantic import BaseModel
 
-from cloud_domain import *
+from cloud_domain import ResourcePolicy, deployment_contract
 
 try:
     from opentelemetry.sdk.resources import Resource
@@ -16,6 +16,7 @@ try:
     trace.set_tracer_provider(p)
 except (ImportError, RuntimeError) as exc:
     logging.getLogger(__name__).warning("OpenTelemetry setup unavailable: %s", exc)
+
 app = FastAPI(title="cloud-native-ai-platform", version="1.0.0")
 tracer = trace.get_tracer("cloud-native-ai-platform")
 
