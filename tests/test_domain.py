@@ -1,4 +1,4 @@
-from cloud_domain import *
+from cloud_domain import ResourcePolicy, deployment_contract
 
 
 def test_contract():
