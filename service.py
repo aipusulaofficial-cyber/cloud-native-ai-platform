@@ -11,9 +11,7 @@ try:
     from opentelemetry.sdk.trace import TracerProvider
     from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
 
-    p = TracerProvider(
-        resource=Resource.create({"service.name": "cloud-native-ai-platform"})
-    )
+    p = TracerProvider(resource=Resource.create({"service.name": "cloud-native-ai-platform"}))
     p.add_span_processor(BatchSpanProcessor(ConsoleSpanExporter()))
     trace.set_tracer_provider(p)
 except (ImportError, RuntimeError) as exc:
@@ -46,8 +44,6 @@ def handle(r: Request):
                 int(r.payload.get("memory_mib", 256)),
                 int(r.payload.get("replicas", 2)),
             )
-            return deployment_contract(
-                r.key, r.payload.get("image", "example:latest"), p
-            )
+            return deployment_contract(r.key, r.payload.get("image", "example:latest"), p)
         except (ValueError, KeyError, RuntimeError) as e:
             raise HTTPException(status_code=400, detail=str(e)) from e
