@@ -1,6 +1,6 @@
 import pytest
 
-from cloud_platform import *
+from cloud_platform import Deployment, DeploymentValidator, ResourcePolicyError
 
 
 def test_manifest_contract():
