@@ -1,5 +1,6 @@
-from cloud_platform import *
 import pytest
+
+from cloud_platform import *
 
 
 def test_manifest_contract():
