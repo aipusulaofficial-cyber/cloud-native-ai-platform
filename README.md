@@ -1,29 +1,27 @@
 # Cloud-Native AI Platform
 
-**Principal-level reference implementation** focused on cloud-native service boundaries, health-aware operation, deployment safety, and infrastructure portability.
+A cloud-native AI service foundation focused on explicit service boundaries, health-aware operation, deployment safety and infrastructure portability.
 
-## Engineering intent
-- Clear domain boundaries and replaceable infrastructure adapters
-- Explicit contracts, validation, and failure semantics
-- Deterministic tests with external dependencies isolated
-- Operational readiness through health checks, CI, and security validation
-- Architecture decisions documented so trade-offs are reviewable
+## Runtime model
+```text
+request -> service boundary -> domain operation -> infrastructure adapter
+                  |                    |
+             readiness/liveness     telemetry
+```
 
-## System design
-The repository is structured around explicit responsibilities rather than framework-driven coupling. Domain policy, orchestration, infrastructure adapters, and operational concerns remain separable so components can evolve independently.
+## Design goals
+- Keep domain behavior independent from cloud-specific adapters.
+- Make readiness and liveness separate operational contracts.
+- Bound runtime resources and dependency work.
+- Treat deployment configuration as part of the system contract.
 
-## Quality bar
-- **Correctness:** contract, edge-case, and failure-path tests
-- **Reliability:** bounded work, explicit failure behavior, and health signals where applicable
-- **Security:** least-privilege boundaries, input validation, and safe defaults
-- **Observability:** correlation/context propagation and actionable operational signals
-- **Delivery:** reproducible CI validation before changes are considered complete
+## Deployment
+Kubernetes/Helm and infrastructure definitions are kept alongside application code so runtime assumptions are reviewable. CI and production checks validate deployment-facing behavior.
 
-## Principal engineering contract
-See [docs/PRINCIPAL-ENGINEERING.md](docs/PRINCIPAL-ENGINEERING.md) for the reviewable engineering contract, NFRs, and change-safety checklist.
+## Reliability & security
+Failure semantics are explicit, health signals are operationally meaningful, and security controls use least-privilege defaults. External dependencies remain replaceable adapters.
 
-## Architecture & decisions
-See [ARCHITECTURE.md](ARCHITECTURE.md) and the ADRs directory for system boundaries, key trade-offs, and extension points.
+## Evidence
+[ARCHITECTURE.md](ARCHITECTURE.md) · [docs/PRINCIPAL-ENGINEERING.md](docs/PRINCIPAL-ENGINEERING.md) · [ADRs](ADRs/)
 
-## Engineering principle
-The goal is to make important behavior **explicit, testable, observable, auditable, and replaceable** without adding complexity that does not buy a measurable engineering property.
+**Engineering chain:** Code → Contract → Test → Security → Runtime → Observability → Deployment → Evidence.
