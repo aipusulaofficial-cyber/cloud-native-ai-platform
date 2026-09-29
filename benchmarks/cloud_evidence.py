@@ -1,3 +1,6 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import json
 from cloud_domain import ResourcePolicy,deployment_contract
 p=ResourcePolicy(500,1024,3); d=deployment_contract("evidence","registry/evidence:1.0",p)
