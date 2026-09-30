@@ -1,5 +1,10 @@
 # Cloud-Native AI Platform
 
+[![CI](https://github.com/aipusulaofficial-cyber/cloud-native-ai-platform/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/aipusulaofficial-cyber/cloud-native-ai-platform/actions/workflows/ci.yml)
+[![Production Tests](https://github.com/aipusulaofficial-cyber/cloud-native-ai-platform/actions/workflows/production-tests.yml/badge.svg?branch=main)](https://github.com/aipusulaofficial-cyber/cloud-native-ai-platform/actions/workflows/production-tests.yml)
+[![Security / SBOM](https://github.com/aipusulaofficial-cyber/cloud-native-ai-platform/actions/workflows/security-sbom.yml/badge.svg?branch=main)](https://github.com/aipusulaofficial-cyber/cloud-native-ai-platform/actions/workflows/security-sbom.yml)
+
+
 A cloud-native AI service foundation focused on explicit service boundaries, health-aware operation, deployment safety and infrastructure portability.
 
 ## Runtime model
